@@ -1,24 +1,27 @@
-## This is CDM cosmology with w, wa and Ok and w for DM
+## This is CDM cosmology with w, wa and w for DM
+##No se considera curvatura.
 ##Vamos a introducir un nuevo parametro asociado con la ecuacion de estado de DM
 ##Esta es una combinacion de los modelos wDMCosmology.py y owa0CDMCosmology.py
+##Para materia oscura el parametro es wMO.
+##Se llama EKCDMCosmology por mis sobrinas E y K.
 
 
 import math as N
 from LCDMCosmology import *
 
 class EKCDMCosmology(LCDMCosmology):
-    def __init__(self, varyw=True, varywa=True, varyOk=True, varywEK=True):
+    def __init__(self, varyw=True, varywa=True, varyOk=False, varywMO=True):
         ## two parameters: Om and h
 
         self.varyw=varyw
         self.varywa=varywa
         self.varyOk=varyOk
-	self.varywEK=varywEK
+	self.varywMO=varywMO
 
         self.Ok=Ok_par.value   
         self.w0=w_par.value
         self.wa=wa_par.value
-	self.wEK=wEK_par.value
+	self.wMO=wMO_par.value
         LCDMCosmology.__init__(self)
 
     ## my free parameters. We add Ok on top of LCDM ones (we inherit LCDM)
@@ -27,7 +30,7 @@ class EKCDMCosmology(LCDMCosmology):
         if (self.varyw): l.append(w_par)
         if (self.varywa): l.append(wa_par)
         if (self.varyOk): l.append(Ok_par)
-	if (self.varywEK): l.append(wEK_par)
+	if (self.varywMO): l.append(wMO_par)
         return l
 
 
@@ -40,8 +43,8 @@ class EKCDMCosmology(LCDMCosmology):
                 self.w0=p.value
             elif p.name=="wa":
                 self.wa=p.value
-	    elif p.name=="wEK":
-		self.wEK=p.value
+	    elif p.name=="wMO":
+		self.wMO=p.value
             elif p.name=="Ok":
                 self.Ok=p.value
                 self.setCurvature(self.Ok)
@@ -56,5 +59,4 @@ class EKCDMCosmology(LCDMCosmology):
 	self.Odm = self.Ocb -self.Obh2/(self.h**2)
 	self.Ob = self.Ocb -self.Odm 
         rhow= a**(-3*(1.0+self.w0+self.wa))*N.exp(-3*self.wa*(1-a))
-        return (self.Ob/a**3+self.Ok/a**2+ self.Odm*a**(-3*(1.0+self.wEK)) +self.Omrad/a**4+NuContrib+(1.0-self.Om-self.Ok)*rhow)
-
+        return (self.Ob/a**3+self.Ok/a**2+ self.Odm*a**(-3*(1.0+self.wMO)) +self.Omrad/a**4+NuContrib+(1.0-self.Om-self.Ok)*rhow)
