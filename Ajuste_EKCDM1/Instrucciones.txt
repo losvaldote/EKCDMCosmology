@@ -1,0 +1,7 @@
+Ajuste EKDM1
+
+En esta carpeta se hará el ajuste de los datos obtenidos al correr EKCDM1. En esta versión del modelo se deja fijo el parámetro wa de la ecuación de estado de la energía oscura. 
+
+Los parámetros que se van a ajustar son:
+wMO (materia oscura).   Cuyos valores, según lo obtenido por SimpleMC, van de -0.015 a -1.4.
+w   (energía oscura).   Cuyos valores, según lo obtenido por SimpleMC, van de -1.4 a -0.6.
