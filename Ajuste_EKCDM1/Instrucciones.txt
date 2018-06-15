@@ -1,4 +1,4 @@
-Ajuste EKDM1
+Ajuste EKCDM1
 
 En esta carpeta se hará el ajuste de los datos obtenidos al correr EKCDM1. En esta versión del modelo se deja fijo el parámetro wa de la ecuación de estado de la energía oscura. 
 
